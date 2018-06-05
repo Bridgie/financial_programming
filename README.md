@@ -15,7 +15,7 @@ pip install BeautifulSoup\
 pip install matplotlib\
 pip install numpy, panda\
 pip install pickle\
-pip install scikit-learn\
+pip install scikit-learn
 
 ## License
 Licensed under MIT
