@@ -102,3 +102,12 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Ignore pickles
+*.pkl
+**/*.pkl
+
+
+#ignore csv files
+*.csv
+**/*.csv
