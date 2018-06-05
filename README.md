@@ -11,11 +11,11 @@ however you can stop after >10 stock (.csv) files are downloaded since these wil
 
 Requires: Python3, BeautifulSoup, matplotlib, numpy, pandas, pickle, scikit-learn
 
-pip install BeautifulSoup /n
-pip install matplotlib /n
-pip install numpy, panda /n
-pip install pickle /n
-pip install scikit-learn /n
+pip install BeautifulSoup\
+pip install matplotlib\
+pip install numpy, panda\
+pip install pickle\
+pip install scikit-learn\
 
 ## License
 Licensed under MIT
