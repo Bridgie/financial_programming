@@ -10,6 +10,9 @@ import pandas_datareader.data as web
 import pickle
 import requests
 from collections import Counter
+from sklearn import svm, model_selection, neighbors
+from sklearn.ensemble import VotingClassifier, RandomForestClassifier
+
 
 style.use('ggplot')
 
@@ -84,7 +87,7 @@ def visualize_data():
     fig1 = plt.figure()
     ax1 = fig1.add_subplot(111)
 
-    heatmap1 = ax1.pcolor(data1, cmap=plt.cm.RdYlGn)
+    heatmap1 = ax1.pcolor(data1, cmap= plt.cm.RdYlGn)
     fig1.colorbar(heatmap1)
 
     ax1.set_xticks(np.arange(data1.shape[1]) + 0.5, minor=False)
@@ -114,7 +117,7 @@ def process_data_for_labels(ticker):
 
 def buy_sell_hold(*args):
     cols = [c for c in args]
-    requirement = 0.02
+    requirement = 0.5
     for col in cols:
         if col > requirement:
             return 1
@@ -152,4 +155,23 @@ def extract_featuresets(ticker):
     return X, y, df
 
 
-extract_featuresets('GOOGL')
+def do_ml(ticker):
+    X, y, df = extract_featuresets(ticker)
+
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.30)
+
+    clf = VotingClassifier([('lsvc', svm.LinearSVC()),
+                            ('knn', neighbors.KNeighborsClassifier()),
+                            ('rfor', RandomForestClassifier())])
+
+    clf.fit(X_train, y_train)
+    confidence = clf.score(X_test, y_test)
+    print('accuracy:', confidence)
+    predictions = clf.predict(X_test)
+    print('predicted class counts:', Counter(predictions))
+    return confidence
+
+
+# examples of running:
+do_ml('AMD')
+do_ml('AMZN')
