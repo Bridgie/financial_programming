@@ -13,7 +13,8 @@ Requires: Python3, BeautifulSoup, matplotlib, numpy, pandas, pickle, scikit-lear
 
 pip install BeautifulSoup\
 pip install matplotlib\
-pip install numpy, panda\
+pip install numpy\
+pip install pandas\
 pip install pickle\
 pip install scikit-learn
 
